@@ -1,0 +1,38 @@
+metadata:
+  labels:
+    some-label: pod-runner
+spec:
+  containers:
+  - name: sonar
+    image: sonarsource/sonar-scanner-cli:latest
+    env:
+    - name: SONAR_HOST_URL
+      value: http://34.116.158.178:9000
+    - name: SONAR_LOGIN
+      value: 6fea2e630db42ba2d834b577034150002cbb4725
+    command:
+    - cat
+    tty: true
+  - name: jnlp
+    env:
+    - name: CONTAINER_ENV_VAR
+      value: jnlp
+    - name: JENKINS_URL
+      value: http://jenkins
+  - name: python
+    image: python:3.6.12-alpine3.12
+    command:
+    - cat
+    tty: true
+  - name: docker
+    image: docker:19.03.13-dind
+    command:
+    - dockerd
+    args:
+    - --host=unix:///var/run/docker.sock
+    - --storage-driver=overlay
+    - --insecure-registry
+    - nexus:8086
+    tty: true
+    securityContext:
+      privileged: true
