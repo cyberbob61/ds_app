@@ -9,7 +9,7 @@ spec:
     - name: SONAR_HOST_URL
       value: http://34.116.158.178:9000
     - name: SONAR_LOGIN
-      value: 6fea2e630db42ba2d834b577034150002cbb4725
+      value: 874d1a364a233094b2ec84a8e7f61feb9978db1f
     command:
     - cat
     tty: true
