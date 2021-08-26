@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
         //sonar
-        stage('Sonarcheck') {
+        stage('Sonar') {
             agent { kubernetes { yamlFile 'sonaragent.yaml' } }
             steps {
                 container('sonar') {
