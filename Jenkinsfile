@@ -19,6 +19,7 @@ pipeline {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
                     //sh "pylint *.py --exit-zero"
                     //sh 'pylint *.py --output-format=parseable --reports=no module || echo "pylint exited with $?"'
+                    sh 'exit 1'
                     sh 'pylint *.py --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
                     //sh 'pylint *.py --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
                     //sh 'cat pylint.log'
@@ -27,6 +28,12 @@ pipeline {
                         tool: pyLint(pattern: 'pylint.log'),
                         unstableTotalAll: 100,
                     )
+                    post {
+                        failure {
+                            error('Abort because of pylint warnings')
+                    
+                }
+            }
                 }
             }
 
