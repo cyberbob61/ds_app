@@ -5,7 +5,7 @@ pipeline {
     }
   }
   stages {
-    stage('Docker Build') {
+    stage('Sonarcheck') {
       steps {
 	    container('sonar') {
 	      git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
@@ -13,6 +13,15 @@ pipeline {
           sh "sonar-scanner -Dsonar.projectKey=sonar -Dsonar.sources=. -Dsonar.host.url=http://34.116.158.178:9000 -Dsonar.login=7b369d4bd2cbf7f40193c4e73eb0a542cc89c1d7"
 	    }
       }
+	    
+    stage('linter') {
+      steps {
+	    container('python-linter') {
+	      git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
+          sh "flake8 --exclude=venv* --statistics"
+	  sh "pytest -v --cov=calculator"
+	    }
+      }    
     }
   }
 }
