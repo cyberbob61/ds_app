@@ -15,11 +15,11 @@ pipeline {
         stage('Linter') {
             agent { kubernetes { yamlFile 'pylint.yaml' } }
             steps {
-                container('sonar') {
+                container('pylint') {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
                     sh "curl ya.ru"
                 }
+            }
         }
     }
-}
 }
