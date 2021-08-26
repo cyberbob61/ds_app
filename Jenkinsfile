@@ -25,7 +25,7 @@ pipeline {
                     //recordIssues(
                     //    tool: pyLint(pattern: 'pylint.log'),
                     //    unstableTotalAll: 90,
-                    )
+                    //)
                 }
             }
 
