@@ -1,6 +1,7 @@
 pipeline {
     agent none
     stages {
+        //sonar
         stage('Sonarcheck') {
             agent { kubernetes { yamlFile 'agent.yaml' } }
             steps {
@@ -10,6 +11,7 @@ pipeline {
                 }
             }
         }
+        //test
         stage('Example SSH Username with private key') {
             steps {
                 sh 'echo "suppa"'
