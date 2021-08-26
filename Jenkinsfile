@@ -1,10 +1,10 @@
 pipeline {
-    //agent none
+    agent none
     stages {
         stage('Sonarcheck') {
+            agent { kubernetes { yamlFile 'agent.yaml' } }
             steps {
                 container('sonar') {
-                    agent { kubernetes { yamlFile 'agent.yaml' } }
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
                 }
                 sh 'echo "Service user is test"'
