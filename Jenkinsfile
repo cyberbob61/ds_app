@@ -27,6 +27,7 @@ pipeline {
                         enabledForFailure: true, aggregatingResults: true,
                         tool: pyLint(pattern: 'pylint.log'),
                         //unstableTotalAll: 100,
+                    )
 
 
                 }
