@@ -13,6 +13,7 @@ pipeline {
         }
         //test
         stage('Example SSH Username with private key') {
+            agent none
             steps {
                 sh 'echo "suppa"'
                 sh 'curl http://google.com'
