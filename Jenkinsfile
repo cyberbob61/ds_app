@@ -18,7 +18,7 @@ pipeline {
                 container('pylint') {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
                     //sh "pylint *.py --exit-zero"
-                    sh 'pylint *.py --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?")'
+                    sh 'pylint *.py --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
                 }
             }
         }
