@@ -11,24 +11,13 @@ pipeline {
                 }
             }
         }
-        //linter
+        //test
         stage('Linter') {
-            agent { kubernetes {
-                yaml '''
-                    apiVersion: v1
-                    kind: Pod
-                    metadata:
-
-                    spec:
-                        containers:
-                        - name: pylint
-                            image: cytopia/pylint
-                            command: curl http://ya.ru
-                            -
-                            tty: true
-                '''
-                }
-            }
+            agent any
+            steps {
+                sh 'echo "suppa"'
+                sh 'curl http://google.com'
             }
         }
     }
+}
