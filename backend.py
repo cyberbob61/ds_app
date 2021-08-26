@@ -86,11 +86,15 @@ def log():
     #return 'test'
 
 def dbinit():
-    cnx = mysql.connector.connect(
+    #cnx = mysql.connector.connect(
+    #        user='admin',
+    #        passwd='ughLt6RnWOr0gCODgIEm1XZCVvGNxIJutfdLSA10',
+    #        host='db-1.cqzzgt2mptdj.us-east-2.rds.amazonaws.com')
+    #cursor = cnx.cursor()
+    cursor = mysql.connector.connect(
             user='admin',
             passwd='ughLt6RnWOr0gCODgIEm1XZCVvGNxIJutfdLSA10',
-            host='db-1.cqzzgt2mptdj.us-east-2.rds.amazonaws.com')
-    cursor = cnx.cursor()
+            host='db-1.cqzzgt2mptdj.us-east-2.rds.amazonaws.com').cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS weatherapp;")
     cursor.execute("USE weatherapp;")
     cursor.execute("SET sql_notes = 0;")
