@@ -5,7 +5,8 @@ import urllib.request
 #1####import requests
 from operator import itemgetter
 from flask import Flask, render_template, Response, request, redirect, url_for
-import mysql.connector
+#import mysql.connector
+from mysql import connector
 #from __future__ import print_function
 #from mysql.connector import errorcode
 
