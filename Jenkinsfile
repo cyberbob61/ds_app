@@ -10,11 +10,11 @@ pipeline {
                 }
             }
         }
-        //stage('Example SSH Username with private key') {
-        //    steps {
-        //        sh 'echo "suppa"'
-        //        sh 'curl http://google.com'
-        //    }
-        //}
+        stage('Example SSH Username with private key') {
+            steps {
+                sh 'echo "suppa"'
+                sh 'curl http://google.com'
+            }
+        }
     }
 }
