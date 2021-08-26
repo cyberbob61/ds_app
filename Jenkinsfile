@@ -24,9 +24,10 @@ pipeline {
                     //sh 'cat pylint.log'
                     //recordIssues enabledForFailure: true, aggregatingResults: true, tool: pyLint(pattern: 'pylint.log')
                     recordIssues(
-                        enabledForFailure: true, aggregatingResults: true,
+                        enabledForFailure: true,
+                        aggregatingResults: true,
                         tool: pyLint(pattern: 'pylint.log'),
-                        //unstableTotalAll: 100,
+                        unstableTotalAll: 100,
                     )
 
 
