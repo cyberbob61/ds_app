@@ -17,7 +17,7 @@ pipeline {
             steps {
                 container('pylint') {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
-                    sh "pylint *.py || exit 0"
+                    sh "pylint *.py --exit-zero"
                 }
             }
         }
