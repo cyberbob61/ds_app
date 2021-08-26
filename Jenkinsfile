@@ -28,7 +28,7 @@ pipeline {
                         aggregatingResults: true,
                         tool: pyLint(pattern: 'pylint.log', reportEncoding: 'UTF-8'),
                         //unstableTotalAll: 100,
-                        qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
+                        qualityGates: [[threshold: 1, type: 'syntax-error']]
                     )
 
 
