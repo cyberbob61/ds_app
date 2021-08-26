@@ -20,7 +20,12 @@ pipeline {
                     //sh "pylint *.py --exit-zero"
                     sh 'pylint *.py --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
                     //sh 'cat pylint.log'
-                    recordIssues enabledForFailure: true, aggregatingResults: true, tool: pyLint(pattern: 'pylint.log')
+                    //recordIssues enabledForFailure: true, aggregatingResults: true, tool: pyLint(pattern: 'pylint.log')
+            steps {
+                recordIssues(
+                tool: pyLint(pattern: 'pylint.log'),
+                unstableTotalAll: 100,
+                )}
                 }
             }
         }
