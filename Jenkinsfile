@@ -1,6 +1,7 @@
 pipeline {
     agent none
   stages {
+    //sonar
     stage('Sonarcheck') {
       agent {
         kubernetes { yamlFile 'agent.yaml'}
@@ -13,5 +14,14 @@ pipeline {
             }
                         }
         }
+    //linter
+    stage('Linter') {
+      agent {
+        docker {
+          image 'maven:3.5.0'
+}}
+      steps {
+        sh 'print 'echo''
+}}}
 
-        }       
+       
