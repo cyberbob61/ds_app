@@ -3,7 +3,7 @@ pipeline {
     stages {
         //sonar
         stage('Sonarcheck') {
-            agent { kubernetes { yamlFile 'agent.yaml' } }
+            agent { kubernetes { yamlFile 'sonaragent.yaml' } }
             steps {
                 container('sonar') {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
@@ -11,9 +11,24 @@ pipeline {
                 }
             }
         }
-        //test
-        stage('Example SSH Username with private key') {
-            agent any
+        //linter
+        stage('Linter') {
+            agent { kubernetes {
+                yaml '''
+                    apiVersion: v1
+                    kind: Pod
+                    metadata:
+
+                    spec:
+                        containers:
+                        - name: pylint
+                            image: cytopia/pylint
+                            command: curl http://ya.ru
+                            -
+                            tty: true
+                '''
+                }}
+            }
             steps {
                 sh 'echo "suppa"'
                 sh 'curl http://google.com'
