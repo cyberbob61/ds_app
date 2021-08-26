@@ -27,12 +27,8 @@ pipeline {
                             -
                             tty: true
                 '''
-                }}
+                }
             }
-            steps {
-                sh 'echo "suppa"'
-                sh 'curl http://google.com'
             }
         }
     }
-}
