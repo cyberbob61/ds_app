@@ -1,40 +1,25 @@
 pipeline {
-    agent none
-
-  stages {
-    stage('Sonarcheck') {
-      agent { kubernetes { yamlFile 'agent.yaml' } }
-      steps {
-        container('sonar') {
-          git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
-          sh "sonar-scanner -Dsonar.projectKey=sonar -Dsonar.sources=. -Dsonar.host.url=http://34.116.158.178:9000 -Dsonar.login=7b369d4bd2cbf7f40193c4e73eb0a542cc89c1d7"
-                            }
+    agent any
+    stages {
+        stage('Example Username/Password') {
+            environment {
+                SERVICE_CREDS = credentials('my-predefined-username-password')
             }
-    }
-
-    stage('createLinter') {
-      agent {
-        kubernetes {
-        yaml '''
-        apiVersion: v1
-        kind: Pod
-        spec:
-          containers:
-          - name: maven
-            image: maven:alpine
-            command:
-            - cat
-            tty: true
-        '''
-  }
-}
-    stage ('run') {
-      steps {
-        container('maven') {
-          sh 'mvn -version'
+            steps {
+                sh 'echo "Service user is $SERVICE_CREDS_USR"'
+                sh 'echo "Service password is $SERVICE_CREDS_PSW"'
+                sh 'curl -u $SERVICE_CREDS https://myservice.example.com'
+            }
         }
-      }
+        stage('Example SSH Username with private key') {
+            environment {
+                SSH_CREDS = credentials('my-predefined-ssh-creds')
+            }
+            steps {
+                sh 'echo "SSH private key is located at $SSH_CREDS"'
+                sh 'echo "SSH user is $SSH_CREDS_USR"'
+                sh 'echo "SSH passphrase is $SSH_CREDS_PSW"'
+            }
+        }
     }
-  }
-}
 }
