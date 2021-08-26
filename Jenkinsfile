@@ -1,8 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Example Username/Password') {
+        stage('Sonarcheck') {
             steps {
+                container('sonar') {
+                    agent { kubernetes { yamlFile 'agent.yaml' } }
+                    git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
+                }
                 sh 'echo "Service user is test"'
                 sh 'curl http://ya.ru'
             }
