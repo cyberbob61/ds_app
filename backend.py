@@ -117,7 +117,7 @@ def dbinit():
 
 
 def dbinsert(id, min_temp, max_temp, the_temp, humidity):
-    cnx = mysql.connector.connect(
+    cnx = connector.connect(
             user='admin',
             passwd='ughLt6RnWOr0gCODgIEm1XZCVvGNxIJutfdLSA10',
             host='db-1.cqzzgt2mptdj.us-east-2.rds.amazonaws.com',
