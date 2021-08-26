@@ -1,10 +1,9 @@
 pipeline {
-    agent {
-      kubernetes { yamlFile 'agent.yaml' }        
-          }
-
   stages {
     stage('Sonarcheck') {
+      agent {
+        kubernetes { yamlFile 'agent.yaml'}
+             }
       steps {
         container('sonar') {
           git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
