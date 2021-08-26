@@ -17,14 +17,14 @@ pipeline {
             steps {
                 container('pylint') {
                     git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
-                    //sh "pylint *.py --exit-zero"
+                    sh "pylint *.py --exit-zero"
                     //sh 'pylint *.py --disable=W1202 --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
-                    sh 'pylint *.py --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
+                    //sh 'pylint *.py --output-format=parseable --reports=no module > pylint.log || echo "pylint exited with $?"'
                     //sh 'cat pylint.log'
                     //recordIssues enabledForFailure: true, aggregatingResults: true, tool: pyLint(pattern: 'pylint.log')
-                    recordIssues(
-                    tool: pyLint(pattern: 'pylint.log'),
-                    unstableTotalAll: 90,
+                    //recordIssues(
+                    //    tool: pyLint(pattern: 'pylint.log'),
+                    //    unstableTotalAll: 90,
                     )
                 }
             }
