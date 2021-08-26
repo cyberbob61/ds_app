@@ -13,11 +13,12 @@ pipeline {
         }
         //test
         stage('Linter') {
-            agent any
+            agent { kubernetes { yamlFile 'pylint.yaml' } }
             steps {
-                sh 'echo "suppa"'
-                sh 'curl http://google.com'
-            }
+                container('sonar') {
+                    git url:'https://github.com/cyberbob61/ds_app.git', branch: 'main'
+                    sh "curl ya.ru"
+                }
         }
     }
 }

@@ -1,10 +1,10 @@
-apiVersion: v1
-kind: Pod
 metadata:
   labels:
-    run: pylint
-  name: pylint
+    some-label: pod-runner
 spec:
   containers:
-  - image: cytopia/pylint
-    name: pylint
+  - name: pylint
+    image: cytopia/pylint
+    command:
+    - cat
+    tty: true
